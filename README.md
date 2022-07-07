@@ -1,1 +1,1 @@
-# Projekt jest tworzony w WPF z MVVVM z podejściem Code First. Największe wątpliwości mam z bazą danych (Projekt/Models znajdują się klasy do bazy) oraz przy kodzie z Projekt.EntityFramework/Services/GenericDataServices. Kodu z Projekt.WPF nie ma sensu na razie sprawdzać bo niewiele się tam znajduje.
+# Projekt z programowania IV
