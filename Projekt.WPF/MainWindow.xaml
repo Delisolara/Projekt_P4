@@ -4,13 +4,139 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projekt.WPF"
-        
-        xmlns:controls="clr-namespace:Projekt.WPF.Controls"
+        xmlns:views="clr-namespace:Projekt.WPF.Views"
+        xmlns:vms="clr-namespace:Projekt.WPF.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Projekt" Height="550" Width="800"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        MouseDown="Window_MouseDown"
+        Background="Transparent"
+        AllowsTransparency="True">
 
-        
-    <Grid>
-        <controls:NavigacionBar />
-    </Grid>
+    <Border CornerRadius="7" 
+            BorderThickness="3">
+
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#7E0F04" Offset="0"/>
+                <GradientStop Color="#B9810B" Offset="0.75"/>
+                <GradientStop Color="#B05B04" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                <GradientStop Color="#0C040F" Offset="0"/>
+                <GradientStop Color="#381313" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Background="#130206">
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="5"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock
+                    Text="PROJEKT"
+                    Foreground="DarkGray"
+                    FontSize="12"
+                    VerticalAlignment="Center"
+                    Margin="10 0 0 0"/>
+
+                <Button
+                    Grid.Column="1"
+                    x:Name="btnMinimize"
+                    Content="-"
+                    Click="btnMinimize_Click"
+                    Foreground="#EEE3E3"
+                    Cursor="Hand"
+                    FontSize="18"
+                    BorderThickness="0">
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#C16300"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#9B5305"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="20" Height="20"
+                                    CornerRadius="10"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button
+                    Grid.Column="2"
+                    x:Name="btnClose"
+                    Content="X"
+                    Click="btnClose_Click"
+                    Foreground="#EEE3E3"
+                    Cursor="Hand"
+                    FontSize="14"
+                    BorderThickness="0">
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#980D00"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#750404"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="20" Height="20"
+                                    CornerRadius="10"
+                                    Background="{TemplateBinding Background}">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+            </Grid>
+            
+            <Grid Grid.Row="1">
+                <Grid.Resources>
+                    <DataTemplate DataType="{x:Type vms:LoginViewModel}">
+                        <views:LoginView/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type vms:HomeViewModel}">
+                        <views:HomeView/>
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type vms:WypozViewModel}">
+                        <views:WypozView/>
+                    </DataTemplate>
+                </Grid.Resources>
+                <ContentControl Content="{Binding CurrentViewModel}"/>
+            </Grid>
+        </Grid>
+    </Border>
 </Window>

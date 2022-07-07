@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Projekt.WPF.Stores;
+using Projekt.WPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -15,8 +17,15 @@ namespace Projekt.WPF
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            Window window = new MainWindow();
-            window.Show();
+            NavigationStore navigationStore = new NavigationStore();
+
+            navigationStore.CurrentViewModel = new LoginViewModel(navigationStore);
+
+            MainWindow = new MainWindow()
+            {
+                DataContext = new MainViewModel(navigationStore)
+            };
+            MainWindow.Show();
             base.OnStartup(e);
         }
     }

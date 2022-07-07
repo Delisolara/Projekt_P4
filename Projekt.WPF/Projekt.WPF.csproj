@@ -8,12 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Projekt.EntityFramework\Projekt.EntityFramework.csproj" />
-    <ProjectReference Include="..\Projekt\Projekt.csproj" />
+    <Folder Include="Images\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.5.0" />
   </ItemGroup>
 
 </Project>
